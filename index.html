@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hugo — Cybersecurity Portfolio</title>
+  <meta name="description" content="Portfolio de Hugo, Technicien IT en transition vers la cybersécurité. Labs, projets école et réalisations perso." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --border: #e8e5df;
+      --border-strong: #ccc8c0;
+      --text: #1a1916;
+      --text-muted: #6b6860;
+      --text-faint: #a09d98;
+      --accent: #1a1916;
+      --accent-green: #1a6644;
+      --accent-green-bg: #eef6f1;
+      --accent-blue: #1a3a6e;
+      --accent-blue-bg: #edf2fb;
+      --accent-amber: #7a4a10;
+      --accent-amber-bg: #fdf3e4;
+      --tag-bg: #f0ede7;
+      --nav-h: 64px;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(248,247,244,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto; width: 100%;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 15px; font-weight: 600; letter-spacing: -0.02em;
+      text-decoration: none; color: var(--text);
+    }
+    .nav-logo span {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--accent-green);
+      margin-left: 6px; vertical-align: middle;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-muted); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 96px 0 64px; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* HERO */
+    #hero { padding-top: calc(var(--nav-h) + 80px); padding-bottom: 80px; }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; letter-spacing: 0.1em;
+      color: var(--accent-green); text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-name {
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 300; letter-spacing: -0.04em; line-height: 1.05;
+      color: var(--text);
+    }
+    .hero-name strong { font-weight: 600; }
+    .hero-title {
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 300; color: var(--text-muted);
+      margin-top: 12px; letter-spacing: -0.01em;
+    }
+    .hero-desc {
+      max-width: 560px; color: var(--text-muted);
+      margin-top: 24px; font-size: 16px; line-height: 1.75;
+    }
+    .hero-cta {
+      display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: var(--radius);
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: all 0.15s; cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--text); color: var(--bg);
+    }
+    .btn-primary:hover { background: #333; }
+    .btn-outline {
+      background: transparent; border-color: var(--border-strong);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--text); background: var(--surface); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: start;
+    }
+    .about-text p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.75; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .skills-block { display: flex; flex-direction: column; gap: 16px; }
+    .skill-row { display: flex; flex-direction: column; gap: 6px; }
+    .skill-label {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-faint);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 13px; padding: 4px 10px;
+      background: var(--tag-bg); border-radius: 6px;
+      color: var(--text-muted); border: 1px solid var(--border);
+    }
+    .tag.green { background: var(--accent-green-bg); color: var(--accent-green); border-color: #c5dfd3; }
+    .tag.blue { background: var(--accent-blue-bg); color: var(--accent-blue); border-color: #c0cfe9; }
+
+    /* SECTION HEADING */
+    .section-header { margin-bottom: 40px; }
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-faint); margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: 28px; font-weight: 500; letter-spacing: -0.025em;
+    }
+
+    /* PROJECTS GRID */
+    .projects-filter {
+      display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 14px; border-radius: 20px; font-size: 13px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
+    .filter-btn.active {
+      background: var(--text); color: var(--bg); border-color: var(--text);
+    }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 22px 22px 18px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: border-color 0.15s, transform 0.15s;
+      text-decoration: none; color: inherit;
+    }
+    .project-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    .project-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .project-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .project-icon.green { background: var(--accent-green-bg); }
+    .project-icon.blue { background: var(--accent-blue-bg); }
+    .project-icon.amber { background: var(--accent-amber-bg); }
+    .project-status {
+      font-size: 11px; padding: 3px 8px; border-radius: 4px;
+      font-weight: 500; white-space: nowrap;
+    }
+    .status-done { background: var(--accent-green-bg); color: var(--accent-green); }
+    .status-wip { background: var(--accent-amber-bg); color: var(--accent-amber); }
+    .project-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35; }
+    .project-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; flex: 1; }
+    .project-footer { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+    .project-tag {
+      font-size: 11px; padding: 2px 8px; border-radius: 4px;
+      background: var(--tag-bg); color: var(--text-faint);
+      font-family: 'DM Mono', monospace;
+    }
+    .project-card[style*="display:none"] { display: none !important; }
+
+    /* EXPERIENCE */
+    .experience-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 140px 1fr;
+      gap: 0 28px; padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .exp-date { font-size: 13px; color: var(--text-faint); padding-top: 3px; font-variant-numeric: tabular-nums; }
+    .exp-company { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
+    .exp-role { font-size: 16px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .exp-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* CONTACT */
+    .contact-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .contact-text h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .contact-text p { color: var(--text-muted); line-height: 1.75; margin-bottom: 24px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .contact-link:hover { color: var(--text); }
+    .contact-link-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--tag-bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .form-field input, .form-field textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; padding: 10px 14px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); color: var(--text);
+      outline: none; transition: border-color 0.15s;
+      resize: vertical;
+    }
+    .form-field input:focus, .form-field textarea:focus { border-color: var(--border-strong); }
+    .form-note { font-size: 12px; color: var(--text-faint); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      display: flex; justify-content: center;
+    }
+    .footer-inner {
+      max-width: 900px; width: 100%; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 13px; color: var(--text-faint); }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+      .about-grid, .contact-block { grid-template-columns: 1fr; gap: 32px; }
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .exp-date { font-size: 12px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Hugo<span></span></a>
+    <ul class="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#experience">Expérience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow">📍 Béziers, France · Open to remote</p>
+    <h1 class="hero-name"><strong>Hugo</strong><br>Cybersecurity Portfolio</h1>
+    <p class="hero-title">Technicien IT → SOC Analyst · Security Engineer</p>
+    <p class="hero-desc">
+      2 ans d'expérience en exploitation IT. En transition active vers la cybersécurité — labs, certifications et projets perso pour rejoindre un SOC ou une équipe sécurité.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+      <a href="#contact" class="btn btn-outline">Me contacter</a>
+      <a href="https://linkedin.com" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">01 — À propos</p>
+      <h2 class="section-title">Profil</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Technicien d'exploitation avec 2 ans d'expérience, titulaire d'un Bachelor <em>Administrateur d'Infrastructure Sécurisée</em> (IPSSI). Ma formation m'a donné des bases solides en réseau, Linux et sécurité des systèmes.
+        </p>
+        <p>
+          Je complète aujourd'hui ce parcours par des labs pratiques sur TryHackMe et HackTheBox, et des projets personnels (app santé, outils d'analyse) pour développer une posture orientée défense et détection.
+        </p>
+        <p>
+          Objectif : intégrer un SOC ou une équipe sécurité en tant qu'analyste ou ingénieur, avec une appétence pour la threat intelligence et le monitoring réseau.
+        </p>
+      </div>
+      <div class="skills-block">
+        <div class="skill-row">
+          <span class="skill-label">Cybersécurité</span>
+          <div class="skill-tags">
+            <span class="tag green">SIEM / Splunk</span>
+            <span class="tag green">Wireshark</span>
+            <span class="tag green">Nmap</span>
+            <span class="tag green">TryHackMe</span>
+            <span class="tag green">HackTheBox</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Infrastructure</span>
+          <div class="skill-tags">
+            <span class="tag blue">Linux</span>
+            <span class="tag blue">Windows Server</span>
+            <span class="tag blue">Active Directory</span>
+            <span class="tag blue">Microsoft 365</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Réseau & Outils</span>
+          <div class="skill-tags">
+            <span class="tag">TCP/IP</span>
+            <span class="tag">Virtualisation</span>
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">Python (bases)</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Formation</span>
+          <div class="skill-tags">
+            <span class="tag green">Bachelor AIS — IPSSI</span>
+            <span class="tag">TryHackMe — Top 10%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">02 — Réalisations</p>
+      <h2 class="section-title">Labs & Projets</h2>
+    </div>
+
+    <div class="projects-filter">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="lab">Labs sécurité</button>
+      <button class="filter-btn" data-filter="school">École IPSSI</button>
+      <button class="filter-btn" data-filter="perso">Projets perso</button>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <!--
+      ============================================================
+      GUIDE RAPIDE — comment dupliquer et remplir une carte
+      ============================================================
+
+      Copie le bloc <a class="project-card"> ci-dessous et remplace :
+
+        href="..."       → lien GitHub, TryHackMe, rapport PDF, etc.
+                           Mets href="#" si pas encore de lien.
+
+        data-cat="..."   → catégorie pour le filtre :
+                           "lab"    = Labs sécurité (TryHackMe, HTB, CTF…)
+                           "school" = Projets école IPSSI
+                           "perso"  = Projets personnels
+
+        project-icon     → classe de couleur de l'icône :
+                           class="project-icon green"  → Labs sécu
+                           class="project-icon blue"   → École
+                           class="project-icon amber"  → Perso
+                           L'emoji entre les balises est libre (🔍 🛡️ 🏗️ 🔐 📊…)
+
+        project-status   → badge de statut :
+                           class="project-status status-done"  + texte "Terminé"
+                           class="project-status status-wip"   + texte "En cours"
+
+        project-title    → nom du projet (court, percutant)
+
+        project-desc     → 1-2 phrases : ce que tu as fait, ce que ça démontre
+
+        project-tag      → outils / technos utilisés (3-5 maxi)
+                           Duplique autant de <span class="project-tag"> que nécessaire.
+
+      ============================================================
+      -->
+
+      <!-- ── LAB SÉCURITÉ 1 ── -->
+      <a href="#" class="project-card" data-cat="lab">
+        <div class="project-card-top">
+          <div class="project-icon green">🔍</div>
+          <span class="project-status status-wip">En cours</span>
+          <!-- statut → status-done = "Terminé" | status-wip = "En cours" -->
+        </div>
+        <div class="project-title">Titre du lab</div>
+        <div class="project-desc">Description courte : ce que tu as pratiqué et ce que ça démontre.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+      <!-- ── LAB SÉCURITÉ 2 ── -->
+      <a href="#" class="project-card" data-cat="lab">
+        <div class="project-card-top">
+          <div class="project-icon green">🛡️</div>
+          <span class="project-status status-wip">En cours</span>
+        </div>
+        <div class="project-title">Titre du lab</div>
+        <div class="project-desc">Description courte : ce que tu as pratiqué et ce que ça démontre.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+      <!-- ── LAB SÉCURITÉ 3 ── -->
+      <a href="#" class="project-card" data-cat="lab">
+        <div class="project-card-top">
+          <div class="project-icon green">🌐</div>
+          <span class="project-status status-wip">En cours</span>
+        </div>
+        <div class="project-title">Titre du lab</div>
+        <div class="project-desc">Description courte : ce que tu as pratiqué et ce que ça démontre.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+      <!-- ── PROJET IPSSI 1 ── -->
+      <a href="#" class="project-card" data-cat="school">
+        <div class="project-card-top">
+          <div class="project-icon blue">🏗️</div>
+          <span class="project-status status-wip">En cours</span>
+        </div>
+        <div class="project-title">Titre du projet école</div>
+        <div class="project-desc">Description courte : contexte du projet, ce que tu as mis en place.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+      <!-- ── PROJET IPSSI 2 ── -->
+      <a href="#" class="project-card" data-cat="school">
+        <div class="project-card-top">
+          <div class="project-icon blue">🔐</div>
+          <span class="project-status status-wip">En cours</span>
+        </div>
+        <div class="project-title">Titre du projet école</div>
+        <div class="project-desc">Description courte : contexte du projet, ce que tu as mis en place.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+      <!-- ── PROJET IPSSI 3 ── -->
+      <a href="#" class="project-card" data-cat="school">
+        <div class="project-card-top">
+          <div class="project-icon blue">⚙️</div>
+          <span class="project-status status-wip">En cours</span>
+        </div>
+        <div class="project-title">Titre du projet école</div>
+        <div class="project-desc">Description courte : contexte du projet, ce que tu as mis en place.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+      <!-- ── PROJET PERSO 1 ── -->
+      <a href="#" class="project-card" data-cat="perso">
+        <div class="project-card-top">
+          <div class="project-icon amber">🏃</div>
+          <span class="project-status status-wip">En cours</span>
+        </div>
+        <div class="project-title">Titre du projet perso</div>
+        <div class="project-desc">Description courte : idée du projet, ce que tu as construit.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+      <!-- ── PROJET PERSO 2 ── -->
+      <a href="#" class="project-card" data-cat="perso">
+        <div class="project-card-top">
+          <div class="project-icon amber">📊</div>
+          <span class="project-status status-wip">En cours</span>
+        </div>
+        <div class="project-title">Titre du projet perso</div>
+        <div class="project-desc">Description courte : idée du projet, ce que tu as construit.</div>
+        <div class="project-footer">
+          <span class="project-tag">Outil 1</span>
+          <span class="project-tag">Outil 2</span>
+          <span class="project-tag">Outil 3</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">03 — Parcours</p>
+      <h2 class="section-title">Expérience</h2>
+    </div>
+    <div class="experience-list">
+      <div class="exp-item">
+        <div class="exp-date">2023 — Présent</div>
+        <div>
+          <div class="exp-company">Entreprise · Béziers</div>
+          <div class="exp-role">Technicien d'exploitation</div>
+          <div class="exp-desc">Support N1/N2, gestion du parc Microsoft 365, administration Linux et Windows Server, supervision réseau. Référent sécurité des postes de travail.</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2020 — 2023</div>
+        <div>
+          <div class="exp-company">IPSSI · Paris</div>
+          <div class="exp-role">Bachelor Administrateur d'Infrastructure Sécurisée</div>
+          <div class="exp-desc">Formation en alternance couvrant la sécurité des systèmes, les réseaux, la cryptographie, l'administration Linux/Windows et la gestion de projets IT.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">04 — Contact</p>
+      <h2 class="section-title">Me contacter</h2>
+    </div>
+    <div class="contact-block">
+      <div class="contact-text">
+        <p>
+          Disponible pour des opportunités en cybersécurité : SOC Analyst, Security Analyst, ou IT Security Engineer. N'hésite pas à me contacter pour un échange.
+        </p>
+        <div class="contact-links">
+          <a href="https://linkedin.com" class="contact-link" target="_blank" rel="noopener">
+            <span class="contact-link-icon">in</span>
+            linkedin.com/in/hugo-[ton-profil]
+          </a>
+          <a href="https://github.com" class="contact-link" target="_blank" rel="noopener">
+            <span class="contact-link-icon">gh</span>
+            github.com/hugo-[ton-profil]
+          </a>
+          <a href="mailto:hugo@email.com" class="contact-link">
+            <span class="contact-link-icon">@</span>
+            hugo@email.com
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-field">
+          <label for="name">Nom</label>
+          <input type="text" id="name" placeholder="Votre nom" />
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="votre@email.com" />
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" placeholder="Votre message..."></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" style="align-self:flex-start">Envoyer →</button>
+        <p class="form-note">⚠️ Le formulaire est statique — remplace-le par Formspree ou Netlify Forms pour recevoir les emails.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Hugo — Portfolio Cybersécurité</span>
+    <span class="footer-copy">Hébergé sur GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.cat === filter) ? 'flex' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
