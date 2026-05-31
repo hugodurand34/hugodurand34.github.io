@@ -19,7 +19,6 @@
       --text: #1a1916;
       --text-muted: #6b6860;
       --text-faint: #a09d98;
-      --accent: #1a1916;
       --accent-green: #1a6644;
       --accent-green-bg: #eef6f1;
       --accent-blue: #1a3a6e;
@@ -89,7 +88,6 @@
     .hero-name {
       font-size: clamp(40px, 7vw, 72px);
       font-weight: 300; letter-spacing: -0.04em; line-height: 1.05;
-      color: var(--text);
     }
     .hero-name strong { font-weight: 600; }
     .hero-title {
@@ -101,31 +99,21 @@
       max-width: 560px; color: var(--text-muted);
       margin-top: 24px; font-size: 16px; line-height: 1.75;
     }
-    .hero-cta {
-      display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap;
-    }
+    .hero-cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 10px 20px; border-radius: var(--radius);
       font-size: 14px; font-weight: 500;
       text-decoration: none; transition: all 0.15s; cursor: pointer;
-      border: 1px solid transparent;
+      border: 1px solid transparent; font-family: 'DM Sans', sans-serif;
     }
-    .btn-primary {
-      background: var(--text); color: var(--bg);
-    }
+    .btn-primary { background: var(--text); color: var(--bg); }
     .btn-primary:hover { background: #333; }
-    .btn-outline {
-      background: transparent; border-color: var(--border-strong);
-      color: var(--text);
-    }
+    .btn-outline { background: transparent; border-color: var(--border-strong); color: var(--text); }
     .btn-outline:hover { border-color: var(--text); background: var(--surface); }
 
     /* ABOUT */
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
-      align-items: start;
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
     .about-text p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.75; }
     .about-text p:last-child { margin-bottom: 0; }
     .skills-block { display: flex; flex-direction: column; gap: 16px; }
@@ -150,14 +138,10 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--text-faint); margin-bottom: 10px;
     }
-    .section-title {
-      font-size: 28px; font-weight: 500; letter-spacing: -0.025em;
-    }
+    .section-title { font-size: 28px; font-weight: 500; letter-spacing: -0.025em; }
 
-    /* PROJECTS GRID */
-    .projects-filter {
-      display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
-    }
+    /* PROJECTS */
+    .projects-filter { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
     .filter-btn {
       padding: 6px 14px; border-radius: 20px; font-size: 13px;
       border: 1px solid var(--border); background: transparent;
@@ -165,12 +149,9 @@
       font-family: 'DM Sans', sans-serif;
     }
     .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
-    .filter-btn.active {
-      background: var(--text); color: var(--bg); border-color: var(--text);
-    }
+    .filter-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
     .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;
     }
     .project-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -189,10 +170,7 @@
     .project-icon.green { background: var(--accent-green-bg); }
     .project-icon.blue { background: var(--accent-blue-bg); }
     .project-icon.amber { background: var(--accent-amber-bg); }
-    .project-status {
-      font-size: 11px; padding: 3px 8px; border-radius: 4px;
-      font-weight: 500; white-space: nowrap;
-    }
+    .project-status { font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 500; white-space: nowrap; }
     .status-done { background: var(--accent-green-bg); color: var(--accent-green); }
     .status-wip { background: var(--accent-amber-bg); color: var(--accent-amber); }
     .project-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35; }
@@ -203,27 +181,44 @@
       background: var(--tag-bg); color: var(--text-faint);
       font-family: 'DM Mono', monospace;
     }
-    .project-card[style*="display:none"] { display: none !important; }
 
-    /* EXPERIENCE */
-    .experience-list { display: flex; flex-direction: column; gap: 0; }
-    .exp-item {
+    /* TIMELINE (Expérience + Formation) */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
       display: grid; grid-template-columns: 140px 1fr;
       gap: 0 28px; padding: 24px 0;
       border-bottom: 1px solid var(--border);
+      position: relative;
     }
-    .exp-item:first-child { padding-top: 0; }
-    .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .exp-date { font-size: 13px; color: var(--text-faint); padding-top: 3px; font-variant-numeric: tabular-nums; }
-    .exp-company { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
-    .exp-role { font-size: 16px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
-    .exp-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .timeline-item:first-child { padding-top: 0; }
+    .timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .timeline-date {
+      font-size: 13px; color: var(--text-faint);
+      padding-top: 3px; font-variant-numeric: tabular-nums;
+      line-height: 1.4;
+    }
+    .timeline-badge {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 4px; margin-top: 6px;
+    }
+    .badge-work { background: var(--accent-green-bg); color: var(--accent-green); }
+    .badge-edu  { background: var(--accent-blue-bg);  color: var(--accent-blue);  }
+    .timeline-org { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
+    .timeline-role { font-size: 16px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .timeline-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* Sub-section label inside parcours */
+    .parcours-label {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-faint); margin-bottom: 0;
+      padding: 20px 0 4px;
+    }
+    .parcours-label:first-child { padding-top: 0; }
 
     /* CONTACT */
-    .contact-block {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
-    }
-    .contact-text h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
     .contact-text p { color: var(--text-muted); line-height: 1.75; margin-bottom: 24px; }
     .contact-links { display: flex; flex-direction: column; gap: 12px; }
     .contact-link {
@@ -236,7 +231,8 @@
       width: 32px; height: 32px; border-radius: 8px;
       background: var(--tag-bg); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 15px; flex-shrink: 0;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
+      color: var(--text-muted);
     }
     .contact-form { display: flex; flex-direction: column; gap: 14px; }
     .form-field { display: flex; flex-direction: column; gap: 5px; }
@@ -246,20 +242,23 @@
       font-size: 14px; padding: 10px 14px;
       border: 1px solid var(--border); border-radius: var(--radius);
       background: var(--surface); color: var(--text);
-      outline: none; transition: border-color 0.15s;
-      resize: vertical;
+      outline: none; transition: border-color 0.15s; resize: vertical;
     }
     .form-field input:focus, .form-field textarea:focus { border-color: var(--border-strong); }
-    .form-note { font-size: 12px; color: var(--text-faint); }
+
+    /* Form feedback states */
+    .form-feedback {
+      font-size: 13px; padding: 10px 14px; border-radius: var(--radius);
+      display: none;
+    }
+    .form-feedback.success { background: var(--accent-green-bg); color: var(--accent-green); border: 1px solid #c5dfd3; display: block; }
+    .form-feedback.error   { background: #fdeaea; color: #8b1a1a; border: 1px solid #f0c0c0; display: block; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
     /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0;
-      display: flex; justify-content: center;
-    }
+    footer { border-top: 1px solid var(--border); padding: 28px 0; }
     .footer-inner {
-      max-width: 900px; width: 100%; padding: 0 24px;
+      max-width: 900px; margin: 0 auto; padding: 0 24px;
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-copy { font-size: 13px; color: var(--text-faint); }
@@ -267,8 +266,8 @@
     /* MOBILE */
     @media (max-width: 700px) {
       .about-grid, .contact-block { grid-template-columns: 1fr; gap: 32px; }
-      .exp-item { grid-template-columns: 1fr; gap: 4px; }
-      .exp-date { font-size: 12px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+      .timeline-date { font-size: 12px; }
       .nav-links { display: none; }
     }
   </style>
@@ -283,6 +282,7 @@
       <li><a href="#about">À propos</a></li>
       <li><a href="#projects">Projets</a></li>
       <li><a href="#experience">Expérience</a></li>
+      <li><a href="#formation">Formation</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -372,48 +372,25 @@
       <p class="section-eyebrow">02 — Réalisations</p>
       <h2 class="section-title">Labs & Projets</h2>
     </div>
-
     <div class="projects-filter">
       <button class="filter-btn active" data-filter="all">Tous</button>
       <button class="filter-btn" data-filter="lab">Labs sécurité</button>
       <button class="filter-btn" data-filter="school">École IPSSI</button>
       <button class="filter-btn" data-filter="perso">Projets perso</button>
     </div>
-
     <div class="projects-grid" id="projects-grid">
 
       <!--
       ============================================================
       GUIDE RAPIDE — comment dupliquer et remplir une carte
       ============================================================
-
-      Copie le bloc <a class="project-card"> ci-dessous et remplace :
-
-        href="..."       → lien GitHub, TryHackMe, rapport PDF, etc.
-                           Mets href="#" si pas encore de lien.
-
-        data-cat="..."   → catégorie pour le filtre :
-                           "lab"    = Labs sécurité (TryHackMe, HTB, CTF…)
-                           "school" = Projets école IPSSI
-                           "perso"  = Projets personnels
-
-        project-icon     → classe de couleur de l'icône :
-                           class="project-icon green"  → Labs sécu
-                           class="project-icon blue"   → École
-                           class="project-icon amber"  → Perso
-                           L'emoji entre les balises est libre (🔍 🛡️ 🏗️ 🔐 📊…)
-
-        project-status   → badge de statut :
-                           class="project-status status-done"  + texte "Terminé"
-                           class="project-status status-wip"   + texte "En cours"
-
-        project-title    → nom du projet (court, percutant)
-
-        project-desc     → 1-2 phrases : ce que tu as fait, ce que ça démontre
-
-        project-tag      → outils / technos utilisés (3-5 maxi)
-                           Duplique autant de <span class="project-tag"> que nécessaire.
-
+        href="..."        → lien GitHub, TryHackMe, rapport PDF…  (href="#" si pas encore de lien)
+        data-cat="..."    → "lab" | "school" | "perso"
+        project-icon      → class="project-icon green|blue|amber"  + emoji libre
+        project-status    → class="project-status status-done|status-wip"
+        project-title     → nom court et percutant
+        project-desc      → 1-2 phrases : ce que tu as fait + ce que ça démontre
+        project-tag       → outils / technos (3-5 maxi)
       ============================================================
       -->
 
@@ -422,7 +399,6 @@
         <div class="project-card-top">
           <div class="project-icon green">🔍</div>
           <span class="project-status status-wip">En cours</span>
-          <!-- statut → status-done = "Terminé" | status-wip = "En cours" -->
         </div>
         <div class="project-title">Titre du lab</div>
         <div class="project-desc">Description courte : ce que tu as pratiqué et ce que ça démontre.</div>
@@ -542,62 +518,100 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- EXPÉRIENCE -->
 <section id="experience">
   <div class="container">
     <div class="section-header">
-      <p class="section-eyebrow">03 — Parcours</p>
-      <h2 class="section-title">Expériences / Formation</h2>
+      <p class="section-eyebrow">03 — Parcours professionnel</p>
+      <h2 class="section-title">Expérience</h2>
     </div>
-    <div class="experience-list">
-      <div class="exp-item">
-        <div class="exp-date">12/2025 — Présent</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          12/2025 — Présent
+          <div><span class="timeline-badge badge-work">Alternance</span></div>
+        </div>
         <div>
-          <div class="exp-company">GE Vernova X ECONOCOM · Montpellier</div>
-          <div class="exp-role">Technicien d'exploitation (Alternance)</div>
-          <div class="exp-desc">Gestion des incidents techniques et support utilisateurs dans un environnement informatique professionnel, maintien en condition opérationnelle des systèmes et équipements informatiques, Application des bonnes pratiques de cybersécurité : gestion des accès, sécurisation des comptes et politiques de sécurité, support des infrastructures réseaux, diagnostic des problèmes de connectivité et maintenance hardware/software.</div>
+          <div class="timeline-org">GE Vernova × ECONOCOM · Montpellier</div>
+          <div class="timeline-role">Technicien d'exploitation</div>
+          <div class="timeline-desc">Gestion des incidents techniques et support utilisateurs, maintien en condition opérationnelle des systèmes et équipements, application des bonnes pratiques de cybersécurité (gestion des accès, sécurisation des comptes, politiques de sécurité), support des infrastructures réseaux, diagnostic de connectivité et maintenance hardware/software.</div>
         </div>
       </div>
-      <div class="exp-item">
-        <div class="exp-date">05/2025 — 08/2025</div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          05/2025 — 08/2025
+          <div><span class="timeline-badge badge-work">Stage</span></div>
+        </div>
         <div>
-          <div class="exp-company">Aïkan · Lattes</div>
-          <div class="exp-role">Technicien informatique (Stage)</div>
-          <div class="exp-desc">Gestion / installation / maintenance et réparation du matériel et des logiciels, administration d'un Active Directory (AD), support technique de proximité.</div>
+          <div class="timeline-org">Aïkan · Lattes</div>
+          <div class="timeline-role">Technicien informatique</div>
+          <div class="timeline-desc">Gestion, installation, maintenance et réparation du matériel et des logiciels, administration d'un Active Directory (AD), support technique de proximité.</div>
         </div>
       </div>
-      <div class="exp-item">
-        <div class="exp-date">07/2024 — 08/2024</div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          07/2024 — 08/2024
+          <div><span class="timeline-badge badge-work">Stage</span></div>
+        </div>
         <div>
-          <div class="exp-company">CGI · Castelnau-le-Lez</div>
-          <div class="exp-role">Technicien cybersécurité (Stage)</div>
-          <div class="exp-desc">Analyse de sécurité de code applicatif via des solutions SAST pour la détection de vulnérabilités logicielles, participation à l'étude et au recensement d'architectures réseaux et systèmes, contribution à l'amélioration des pratiques de cybersécurité et à l'analyse des risques techniques, sensibilisation aux problématiques de sécurisation des infrastructures IT et réseaux, collaboration avec des équipes techniques dans un contexte de gestion de projets cybersécurité.</div>
+          <div class="timeline-org">CGI · Castelnau-le-Lez</div>
+          <div class="timeline-role">Technicien cybersécurité</div>
+          <div class="timeline-desc">Analyse de sécurité de code applicatif via des solutions SAST, participation à l'étude et au recensement d'architectures réseaux et systèmes, contribution à l'amélioration des pratiques de cybersécurité et à l'analyse des risques techniques, collaboration avec des équipes techniques dans un contexte de gestion de projets cybersécurité.</div>
         </div>
       </div>
-      <div class="exp-item">
-        <div class="exp-date">2026 — 2028</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="formation">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">04 — Parcours académique</p>
+      <h2 class="section-title">Formation</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          2026 — 2028
+          <div><span class="timeline-badge badge-edu">À venir</span></div>
+        </div>
         <div>
-          <div class="exp-company">Montpellier</div>
-          <div class="exp-role">Mastère en Cybersécurité</div>
-          <div class="exp-desc">Formation en alternance spécialisée en cybersécurité couvrant la sécurité des systèmes d’information et des réseaux, la cryptographie, l’administration des environnements Linux/Windows, la sécurité du cloud, l’audit et l’analyse des risques, les tests d’intrusion (pentest), la gestion des incidents de sécurité, la gouvernance SSI ainsi que le pilotage de projets informatiques.</div>
+          <div class="timeline-org">Montpellier</div>
+          <div class="timeline-role">Mastère en Cybersécurité</div>
+          <div class="timeline-desc">Formation en alternance spécialisée couvrant la sécurité des SI et des réseaux, la cryptographie, l'administration Linux/Windows, la sécurité du cloud, l'audit et l'analyse des risques, les tests d'intrusion (pentest), la gestion des incidents, la gouvernance SSI et le pilotage de projets informatiques.</div>
         </div>
       </div>
-      <div class="exp-item">
-        <div class="exp-date">2023 — 2026</div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          2023 — 2026
+          <div><span class="timeline-badge badge-edu">Alternance</span></div>
+        </div>
         <div>
-          <div class="exp-company">IPSSI • Montpellier</div>
-          <div class="exp-role">Bachelor Administration d'Infrastructures Sécurisées (AIS)</div>
-          <div class="exp-desc">Formation en alternance couvrant l’administration et la sécurisation des infrastructures systèmes et réseaux, les environnements Linux/Windows, la virtualisation, le cloud computing, la supervision des services, l’automatisation par scripting, la gestion des incidents, le support technique ainsi que les fondamentaux de la cybersécurité.</div>
+          <div class="timeline-org">IPSSI · Montpellier</div>
+          <div class="timeline-role">Bachelor Administration d'Infrastructures Sécurisées (AIS)</div>
+          <div class="timeline-desc">Formation couvrant l'administration et la sécurisation des infrastructures systèmes et réseaux, les environnements Linux/Windows, la virtualisation, le cloud computing, la supervision des services, l'automatisation par scripting, la gestion des incidents, le support technique et les fondamentaux de la cybersécurité.</div>
         </div>
       </div>
-      <div class="exp-item">
-        <div class="exp-date">2020 — 2023</div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          2020 — 2023
+          <div><span class="timeline-badge badge-edu">Diplôme</span></div>
+        </div>
         <div>
-          <div class="exp-company">Lycée La Trinité • Béziers</div>
-          <div class="exp-role">Baccalauréat Général</div>
-          <div class="exp-desc">Formation générale axée sur les mathématiques et les sciences de la vie et de la Terre, couvrant l’analyse mathématique, les probabilités et statistiques, l’algèbre, la biologie, la génétique, l’écologie ainsi que la démarche scientifique et l’analyse de données.</div>
+          <div class="timeline-org">Lycée La Trinité · Béziers</div>
+          <div class="timeline-role">Baccalauréat Général</div>
+          <div class="timeline-desc">Formation générale axée sur les mathématiques et les sciences de la vie et de la Terre, couvrant l'analyse mathématique, les probabilités et statistiques, l'algèbre, la biologie, la génétique, l'écologie ainsi que la démarche scientifique et l'analyse de données.</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -606,7 +620,7 @@
 <section id="contact">
   <div class="container">
     <div class="section-header">
-      <p class="section-eyebrow">04 — Contact</p>
+      <p class="section-eyebrow">05 — Contact</p>
       <h2 class="section-title">Me contacter</h2>
     </div>
     <div class="contact-block">
@@ -615,27 +629,37 @@
           Disponible pour des opportunités en cybersécurité : SOC Analyst, Security Analyst, ou IT Security Engineer. N'hésite pas à me contacter pour un échange.
         </p>
         <div class="contact-links">
-          <a href="https://linkedin.com" class="contact-link" target="_blank" rel="noopener">
+          <a href="https://linkedin.com/in/hugo-drnd" class="contact-link" target="_blank" rel="noopener">
             <span class="contact-link-icon">in</span>
             linkedin.com/in/hugo-drnd
           </a>
         </div>
       </div>
+
+      <!-- ============================================================
+           FORMULAIRE FORMSPREE
+           1. Va sur https://formspree.io → Sign up (gratuit)
+           2. New Form → donne-lui un nom (ex: "Portfolio contact")
+           3. Copie ton Form ID (ressemble à : xpwzabcd)
+           4. Remplace YOUR_FORM_ID ci-dessous par ce code
+           ============================================================ -->
       <div class="contact-form">
         <div class="form-field">
-          <label for="name">Nom</label>
-          <input type="text" id="name" placeholder="Votre nom" />
+          <label for="cf-name">Nom</label>
+          <input type="text" id="cf-name" name="name" placeholder="Votre nom" required />
         </div>
         <div class="form-field">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="votre@email.com" />
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" placeholder="votre@email.com" required />
         </div>
         <div class="form-field">
-          <label for="message">Message</label>
-          <textarea id="message" rows="4" placeholder="Votre message..."></textarea>
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" placeholder="Votre message..." required></textarea>
         </div>
-        <button type="button" class="btn btn-primary" style="align-self:flex-start">Envoyer →</button>
-        <p class="form-note">⚠️ Le formulaire est statique — remplace-le par Formspree ou Netlify Forms pour recevoir les emails.</p>
+        <button type="button" id="cf-submit" class="btn btn-primary" style="align-self:flex-start">
+          Envoyer →
+        </button>
+        <div id="cf-feedback" class="form-feedback"></div>
       </div>
     </div>
   </div>
@@ -650,6 +674,7 @@
 </footer>
 
 <script>
+  /* ── Filtre projets ── */
   const filterBtns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.project-card');
   filterBtns.forEach(btn => {
@@ -661,6 +686,53 @@
         card.style.display = (filter === 'all' || card.dataset.cat === filter) ? 'flex' : 'none';
       });
     });
+  });
+
+  /* ── Formulaire Formspree ── */
+  const FORMSPREE_ID = 'YOUR_FORM_ID'; // ← remplace ici par ton ID Formspree
+
+  document.getElementById('cf-submit').addEventListener('click', async () => {
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    const feedback = document.getElementById('cf-feedback');
+    const btn      = document.getElementById('cf-submit');
+
+    feedback.className = 'form-feedback';
+    feedback.textContent = '';
+
+    if (!name || !email || !message) {
+      feedback.className = 'form-feedback error';
+      feedback.textContent = 'Merci de remplir tous les champs.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (res.ok) {
+        feedback.className = 'form-feedback success';
+        feedback.textContent = '✓ Message envoyé ! Je vous répondrai rapidement.';
+        document.getElementById('cf-name').value = '';
+        document.getElementById('cf-email').value = '';
+        document.getElementById('cf-message').value = '';
+        btn.textContent = 'Envoyé ✓';
+      } else {
+        throw new Error('Erreur serveur');
+      }
+    } catch {
+      feedback.className = 'form-feedback error';
+      feedback.textContent = 'Une erreur est survenue. Réessaie ou contacte-moi directement sur LinkedIn.';
+      btn.disabled = false;
+      btn.textContent = 'Envoyer →';
+    }
   });
 </script>
 </body>
